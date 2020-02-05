@@ -38,11 +38,6 @@ env:
     - TOXENV=py37-2.1
     - TOXENV=py37-2.2
     - TOXENV=py37-3.0
-    - TOXENV=py38-1.9
-    - TOXENV=py38-1.10
-    - TOXENV=py38-1.11
-    - TOXENV=py38-2.0
-    - TOXENV=py38-2.1
     - TOXENV=py38-2.2
     - TOXENV=py38-3.0
 matrix:
@@ -62,9 +57,6 @@ matrix:
       - env: TOXENV=py37-2.1
       - env: TOXENV=py37-2.2
       - env: TOXENV=py37-3.0
-      - env: TOXENV=py38-1.11
-      - env: TOXENV=py38-2.0
-      - env: TOXENV=py38-2.1
       - env: TOXENV=py38-2.2
       - env: TOXENV=py38-3.0
 install:
