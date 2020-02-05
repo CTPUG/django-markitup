@@ -7,15 +7,63 @@ addons:
         packages:
             - python3.5
             - python3.5-dev
+            - python3.6
+            - python3.6-dev
+            - python3.7
+            - python3.7-dev
 env:
     - TOXENV=py27-1.8
     - TOXENV=py27-1.9
     - TOXENV=py27-1.10
-    - TOXENV=py34-1.8
-    - TOXENV=py34-1.9
-    - TOXENV=py34-1.10
     - TOXENV=py35-1.9
     - TOXENV=py35-1.10
+    - TOXENV=py35-1.11
+    - TOXENV=py35-2.0
+    - TOXENV=py35-2.1
+    - TOXENV=py35-2.2
+    - TOXENV=py36-1.9
+    - TOXENV=py36-1.10
+    - TOXENV=py36-1.11
+    - TOXENV=py36-2.0
+    - TOXENV=py36-2.1
+    - TOXENV=py36-2.2
+    - TOXENV=py36-3.0
+    - TOXENV=py37-1.9
+    - TOXENV=py37-1.10
+    - TOXENV=py37-1.11
+    - TOXENV=py37-2.0
+    - TOXENV=py37-2.1
+    - TOXENV=py37-2.2
+    - TOXENV=py37-3.0
+    - TOXENV=py38-1.9
+    - TOXENV=py38-1.10
+    - TOXENV=py38-1.11
+    - TOXENV=py38-2.0
+    - TOXENV=py38-2.1
+    - TOXENV=py38-2.2
+    - TOXENV=py38-3.0
+matrix:
+    allow_failures:
+      - TOXENV=py3.5-1.11
+      - TOXENV=py3.5-2.0
+      - TOXENV=py3.5-2.1
+      - TOXENV=py3.5-2.2
+      - TOXENV=py3.6-1.11
+      - TOXENV=py3.6-2.0
+      - TOXENV=py3.6-2.1
+      - TOXENV=py3.6-2.2
+      - TOXENV=py3.6-2.3
+      - TOXENV=py3.6-3.0
+      - TOXENV=py3.7-1.11
+      - TOXENV=py3.7-2.0
+      - TOXENV=py3.7-2.1
+      - TOXENV=py3.7-2.2
+      - TOXENV=py3.7-3.0
+      - TOXENV=py3.8-1.11
+      - TOXENV=py3.8-2.0
+      - TOXENV=py3.8-2.1
+      - TOXENV=py3.8-2.2
+      - TOXENV=py3.8-3.0
 install:
     - pip install tox
 script:
