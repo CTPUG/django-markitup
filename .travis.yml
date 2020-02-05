@@ -44,26 +44,26 @@ env:
     - TOXENV=py38-3.0
 matrix:
     allow_failures:
-      - TOXENV=py35-1.11
-      - TOXENV=py35-2.0
-      - TOXENV=py35-2.1
-      - TOXENV=py35-2.2
-      - TOXENV=py36-1.11
-      - TOXENV=py36-2.0
-      - TOXENV=py36-2.1
-      - TOXENV=py36-2.2
-      - TOXENV=py36-2.3
-      - TOXENV=py36-3.0
-      - TOXENV=py37-1.11
-      - TOXENV=py37-2.0
-      - TOXENV=py37-2.1
-      - TOXENV=py37-2.2
-      - TOXENV=py37-3.0
-      - TOXENV=py38-1.11
-      - TOXENV=py38-2.0
-      - TOXENV=py38-2.1
-      - TOXENV=py38-2.2
-      - TOXENV=py38-3.0
+      - env: TOXENV=py35-1.11
+      - env: TOXENV=py35-2.0
+      - env: TOXENV=py35-2.1
+      - env: TOXENV=py35-2.2
+      - env: TOXENV=py36-1.11
+      - env: TOXENV=py36-2.0
+      - env: TOXENV=py36-2.1
+      - env: TOXENV=py36-2.2
+      - env: TOXENV=py36-2.3
+      - env: TOXENV=py36-3.0
+      - env: TOXENV=py37-1.11
+      - env: TOXENV=py37-2.0
+      - env: TOXENV=py37-2.1
+      - env: TOXENV=py37-2.2
+      - env: TOXENV=py37-3.0
+      - env: TOXENV=py38-1.11
+      - env: TOXENV=py38-2.0
+      - env: TOXENV=py38-2.1
+      - env: TOXENV=py38-2.2
+      - env: TOXENV=py38-3.0
 install:
     - pip install tox
 script:
