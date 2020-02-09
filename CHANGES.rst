@@ -1,11 +1,10 @@
 CHANGES
 =======
 
-master (unreleased)
+3.5.0 (2020.02.09)
 -------------------
 
 * Add support for Django 1.11 and 2.0.
-* Drop compatibility with Django 1.10 and lower.
 
 3.0.0 (2016.09.04)
 ------------------
