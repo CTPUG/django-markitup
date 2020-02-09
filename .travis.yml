@@ -42,18 +42,12 @@ env:
     - TOXENV=py38-3.0
 matrix:
     allow_failures:
-      - env: TOXENV=py35-1.11
-      - env: TOXENV=py35-2.0
       - env: TOXENV=py35-2.1
       - env: TOXENV=py35-2.2
-      - env: TOXENV=py36-1.11
-      - env: TOXENV=py36-2.0
       - env: TOXENV=py36-2.1
       - env: TOXENV=py36-2.2
       - env: TOXENV=py36-2.3
       - env: TOXENV=py36-3.0
-      - env: TOXENV=py37-1.11
-      - env: TOXENV=py37-2.0
       - env: TOXENV=py37-2.1
       - env: TOXENV=py37-2.2
       - env: TOXENV=py37-3.0

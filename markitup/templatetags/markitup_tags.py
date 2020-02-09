@@ -1,10 +1,14 @@
 from __future__ import unicode_literals
 
 from django import template
-from django.core.urlresolvers import reverse, NoReverseMatch
+try:
+    from django.urls import NoReverseMatch, reverse
+except ImportError:
+    from django.core.urlresolvers import reverse, NoReverseMatch
 from markitup import settings
 from markitup.util import absolute_url
 from markitup.fields import render_func
+
 
 register = template.Library()
 
