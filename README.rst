@@ -14,8 +14,8 @@ django-markitup
     :target: https://pypi.python.org/pypi/django-markitup/
     :alt: Supported Python versions
 
-.. image:: https://travis-ci.org/zsiciarz/django-markitup.svg
-    :target: https://travis-ci.org/zsiciarz/django-markitup
+.. image:: https://travis-ci.org/CTPUG/django-markitup.svg
+    :target: https://travis-ci.org/CTPUG/django-markitup
 
 A Django reusable application for end-to-end markup handling. Includes:
 
