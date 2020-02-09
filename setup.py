@@ -40,7 +40,7 @@ setup(
     ],
     zip_safe=False,
     test_suite='runtests.runtests',
-    tests_require='Django>=1.11',
+    tests_require='Django>=1.8',
     package_data={'markitup': ['templates/markitup/*.html'] +
                               _static_files('static')}
 )

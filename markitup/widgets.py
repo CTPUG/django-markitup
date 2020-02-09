@@ -4,7 +4,10 @@ import posixpath
 from django import forms
 from django.contrib.admin.widgets import AdminTextareaWidget
 from django.template.loader import render_to_string
-from django.urls import NoReverseMatch, reverse
+try:
+    from django.urls import NoReverseMatch, reverse
+except ImportError:
+    from django.core.urlresolvers import reverse, NoReverseMatch
 from django.utils.safestring import mark_safe
 from markitup import settings
 from markitup.util import absolute_url
