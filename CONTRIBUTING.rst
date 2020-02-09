@@ -3,7 +3,7 @@ Contributing
 
 Thanks for your interest in contributing to ``django-markitup``!
 
-The code lives at https://github.com/zsiciarz/django-markitup.
+The code lives at https://github.com/CTPUG/django-markitup.
 
 Features and bugfixes that involve modifying Python code should be accompanied
 by tests in ``tests/tests.py``, and all existing and new tests should pass. To
