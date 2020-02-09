@@ -17,12 +17,12 @@ def _static_files(prefix):
 
 setup(
     name='django-markitup',
-    version='3.0.0',
+    version='3.5.0',
     description='Markup handling for Django using the MarkItUp! universal markup editor',
     long_description=long_description,
     author='Carl Meyer',
     author_email='carl@oddbird.net',
-    url='https://github.com/zsiciarz/django-markitup',
+    url='https://github.com/CTPUG/django-markitup',
     packages=['markitup', 'markitup.templatetags'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -33,9 +33,10 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Framework :: Django',
     ],
     zip_safe=False,
