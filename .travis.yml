@@ -42,16 +42,8 @@ env:
     - TOXENV=py38-3.0
 matrix:
     allow_failures:
-      - env: TOXENV=py35-2.1
-      - env: TOXENV=py35-2.2
-      - env: TOXENV=py36-2.1
-      - env: TOXENV=py36-2.2
-      - env: TOXENV=py36-2.3
       - env: TOXENV=py36-3.0
-      - env: TOXENV=py37-2.1
-      - env: TOXENV=py37-2.2
       - env: TOXENV=py37-3.0
-      - env: TOXENV=py38-2.2
       - env: TOXENV=py38-3.0
 install:
     - pip install tox
