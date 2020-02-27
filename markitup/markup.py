@@ -29,7 +29,7 @@ django-template-utils_.
 """
 from __future__ import unicode_literals
 
-from django.utils.functional import curry, wraps
+from functools import partial, wraps
 
 from markitup.settings import MARKITUP_PREVIEW_FILTER
 
@@ -40,4 +40,4 @@ else:
     # Don't coerce to unicode on python 2
     module, funcname = filter_path.rsplit(str('.'), 1)
     func = getattr(__import__(module, {}, {}, [funcname]), funcname)
-    filter_func = wraps(func)(curry(func, **filter_kwargs))
+    filter_func = wraps(func)(partial(func, **filter_kwargs))
