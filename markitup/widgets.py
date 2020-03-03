@@ -86,23 +86,6 @@ class MarkItUpWidget(MarkupTextarea):
             js=js_media)
     media = property(_media)
 
-    def render(self, name, value, attrs=None, renderer=None):
-        html = super(MarkItUpWidget, self).render(name, value, attrs)
-
-        # Passing base_attrs as a kwarg for compatibility with Django < 1.11
-        # (where it will be treated as an innocuous attr named base_attrs)
-        final_attrs = self.build_attrs(
-            base_attrs=self.attrs, extra_attrs=attrs)
-
-        preview_url = self.attrs['data-auto-preview']
-
-        html += render_to_string('markitup/editor.html',
-                                 {'textarea_id': final_attrs['id'],
-                                 'AUTO_PREVIEW': self.auto_preview,
-                                 'preview_url': preview_url})
-
-        return mark_safe(html)
-
 
 class AdminMarkItUpWidget(MarkItUpWidget, AdminTextareaWidget):
     """
