@@ -5,9 +5,9 @@ from django import forms
 from django.contrib.admin.widgets import AdminTextareaWidget
 from django.template.loader import render_to_string
 try:
-    from django.urls import NoReverseMatch, reverse
+    from django.urls import NoReverseMatch, reverse_lazy
 except ImportError:
-    from django.core.urlresolvers import reverse, NoReverseMatch
+    from django.core.urlresolvers import NoReverseMatch, reverse_lazy
 from django.utils.safestring import mark_safe
 from markitup import settings
 from markitup.util import absolute_url
@@ -94,10 +94,7 @@ class MarkItUpWidget(MarkupTextarea):
         final_attrs = self.build_attrs(
             base_attrs=self.attrs, extra_attrs=attrs)
 
-        try:
-            preview_url = reverse('markitup_preview')
-        except NoReverseMatch:
-            preview_url = ""
+        preview_url = self.attrs['data-auto-preview']
 
         html += render_to_string('markitup/editor.html',
                                  {'textarea_id': final_attrs['id'],
