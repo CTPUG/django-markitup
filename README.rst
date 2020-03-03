@@ -326,10 +326,10 @@ like this::
 
     MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': True})
 
-Alternatively, you could use the "textile" filter provided by Django
-like this::
+Alternatively, you could use the "textile" filter provided by the
+django-markwhat library like this::
 
-    MARKITUP_FILTER = ('django.contrib.markup.templatetags.markup.textile', {})
+    MARKITUP_FILTER = ('django_markwhat.templatetags.markup.textile', {})
 
 (The textile filter function doesn't accept keyword arguments, so the
 kwargs dictionary must be empty in this case.)
