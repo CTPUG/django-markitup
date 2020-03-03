@@ -17,7 +17,7 @@ def _static_files(prefix):
 
 setup(
     name='django-markitup',
-    version='3.5.0',
+    version='4.0.0',
     description='Markup handling for Django using the MarkItUp! universal markup editor',
     long_description=long_description,
     author='Carl Meyer',
