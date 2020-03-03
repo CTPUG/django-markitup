@@ -15,9 +15,6 @@ addons:
             - python3.8-dev
             - python3.8-venv
 env:
-    - TOXENV=py27-1.8
-    - TOXENV=py27-1.9
-    - TOXENV=py27-1.10
     - TOXENV=py35-1.9
     - TOXENV=py35-1.10
     - TOXENV=py35-1.11
