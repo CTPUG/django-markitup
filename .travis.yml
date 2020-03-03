@@ -24,18 +24,21 @@ env:
     - TOXENV=py36-2.1
     - TOXENV=py36-2.2
     - TOXENV=py36-3.0
+    - TOXENV=py36-djdev
     - TOXENV=py37-1.11
     - TOXENV=py37-2.0
     - TOXENV=py37-2.1
     - TOXENV=py37-2.2
     - TOXENV=py37-3.0
+    - TOXENV=py37-djdev
     - TOXENV=py38-2.2
     - TOXENV=py38-3.0
+    - TOXENV=py38-djdev
 matrix:
     allow_failures:
-      - env: TOXENV=py36-3.0
-      - env: TOXENV=py37-3.0
-      - env: TOXENV=py38-3.0
+        - env: TOXENV=py36-djdev
+        - env: TOXENV=py37-djdev
+        - env: TOXENV=py38-djdev
 install:
     - pip install tox
 script:
