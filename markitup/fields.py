@@ -1,20 +1,17 @@
-from __future__ import unicode_literals
+from functools import partial
 
 from django.conf import settings
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.safestring import mark_safe, SafeData
-from django.utils.functional import curry
 from django.core.exceptions import ImproperlyConfigured
 from markitup import widgets
 
 _rendered_field_name = lambda name: '_%s_rendered' % name
 
 def _get_render_func(dotted_path, **kwargs):
-    # Don't coerce to unicode on python 2
-    (module, func) = dotted_path.rsplit(str('.'), 1)
+    module, func = dotted_path.rsplit('.', 1)
     func = getattr(__import__(module, {}, {}, [func]), func)
-    return curry(func, **kwargs)
+    return partial(func, **kwargs)
 
 try:
     render_func = _get_render_func(settings.MARKITUP_FILTER[0],
@@ -25,7 +22,6 @@ except ImportError as e:
 except AttributeError as e:
     raise ImproperlyConfigured("MARKITUP_FILTER setting is required")
 
-@python_2_unicode_compatible
 class Markup(SafeData):
     def __init__(self, instance, field_name, rendered_field_name):
         # instead of storing actual values store a reference to the instance

@@ -17,7 +17,7 @@ def _static_files(prefix):
 
 setup(
     name='django-markitup',
-    version='3.7.0',
+    version='4.0.0',
     description='Markup handling for Django using the MarkItUp! universal markup editor',
     long_description=long_description,
     author='Carl Meyer',
@@ -31,7 +31,6 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
@@ -41,7 +40,7 @@ setup(
     ],
     zip_safe=False,
     test_suite='runtests.runtests',
-    tests_require='Django>=1.8',
+    tests_require='Django>=1.11',
     package_data={'markitup': ['templates/markitup/*.html'] +
                               _static_files('static')}
 )
