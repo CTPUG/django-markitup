@@ -39,7 +39,7 @@ matrix:
         - env: TOXENV=py38-djdev
         - env: TOXENV=py39-djdev
 install:
-    - pip install virtualenv
+    - pip install -U virtualenv
     - pip install tox
 script:
     - export PYTHONPATH=$PYTHONPATH:`pwd`
