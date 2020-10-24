@@ -9,6 +9,7 @@ from django.template import Template, Context
 from django.test import TestCase, Client
 from django.utils.safestring import mark_safe
 from django.test.utils import override_settings
+from django.utils.version import get_version, get_version_tuple
 
 from django.contrib import admin
 
@@ -17,6 +18,17 @@ from markitup.templatetags import markitup_tags
 from markitup.widgets import MarkItUpWidget, MarkupTextarea, AdminMarkItUpWidget
 
 from .models import Post, AbstractParent, CallableDefault
+
+
+
+def replace_javascript():
+    """Check if we need to strip out 'text/javascript' bits"""
+    # This is a bit of a hack, but I don't have an elegant way
+    # of dealing with the change between Django 3.0 and 3.1 here
+    djversion = get_version_tuple(get_version())
+    if djversion[0] > 3 or (djversion[0] == 3 and djversion[1] > 0):
+        return True
+    return False
 
 
 class MarkupFieldTests(TestCase):
@@ -443,6 +455,19 @@ class WidgetMediaUrlTests(TemplatetagMediaUrlTests):
 
     def _get_js(self, *args, **kwargs):
         return str(self._get_media_obj(*args, **kwargs)['js'])
+
+    @property
+    def script_tags(self):
+        result = super().script_tags
+        if replace_javascript():
+            result = result.replace('type="text/javascript" ', '')
+        return result
+
+    def _get_expected_media(self):
+        result = super()._get_expected_media()
+        if replace_javascript():
+            result = result.replace('type="text/javascript" ', '')
+        return result
 
     def test_set_via_argument(self):
         for miu_set, link in self.set_urls:
