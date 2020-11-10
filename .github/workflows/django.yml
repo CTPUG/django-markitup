@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
+      matrix:
         python-version: [3.6, 3.7, 3.8]
-        django-version: [2.2, 3.0, 3.1, djdev]
+        django-version: [2.2, 3.0, 3.1, 'djdev']
 
     steps:
     - uses: actions/checkout@v2
