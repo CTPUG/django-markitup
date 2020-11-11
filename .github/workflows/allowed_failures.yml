@@ -1,4 +1,4 @@
-name: Django CI
+name: Allowed Failures (Django)
 
 on: [push, pull_request]
 
