@@ -1,6 +1,13 @@
 CHANGES
 =======
 
+
+4.0.0 (2020.04.06)
+-------------------
+
+* Drop support for Python 2.7.
+* Drop compatibility with Django < 1.11.
+
 3.5.0 (2020.02.09)
 -------------------
 
