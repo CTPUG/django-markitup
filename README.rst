@@ -339,6 +339,31 @@ kwargs dictionary must be empty in this case.)
 ``django-markitup`` provides one sample rendering function,
 ``render_rest`` in the ``markitup.renderers`` module.
 
+Avoiding Cross Site Scripting (XSS) attacks
+-------------------------------------------
+
+If your site is displaying user-provided markup to the world, then there
+is some risk of users injecting malicious ``<script>`` tags (or similar)
+into their markup text, that your site will then render in its HTML
+pages. Any filter that passes through HTML unmodified (e.g.
+python-markdown) is especially at-risk, here.
+
+This can be mitigated by running the rendered HTML through the bleach
+library, e.g::
+
+    MARKITUP_FILTER = ('my_lib.bleached_markdown', {})
+
+Where ``my_lib`` contains::
+
+    import bleach
+    from bleach_allowlist import markdown_tags, markdown_attrs
+    from markdown import markdown
+
+    def bleached_markdown(text, **kwargs):
+        markdown_rendered = markdown(text, **kwargs)
+        bleached = bleach.clean(markdown_rendered, markdown_tags, markdown_attrs)
+        return bleached
+
 render_markup template filter
 =============================
 
