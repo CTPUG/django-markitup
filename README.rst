@@ -326,7 +326,7 @@ to the filter function.  The dictionary may be empty.
 For example, if you have python-markdown installed, you could use it
 like this::
 
-    MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': True})
+    MARKITUP_FILTER = ('markdown.markdown', {})
 
 Alternatively, you could use the "textile" filter provided by the
 django-markwhat library like this::

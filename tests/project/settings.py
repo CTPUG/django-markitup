@@ -30,7 +30,7 @@ TEMPLATES = [
 
 ROOT_URLCONF = 'tests.project.urls'
 
-MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': True})
+MARKITUP_FILTER = ('markdown.markdown', {})
 MARKITUP_SET = 'markitup/sets/markdown/'  # Default includes trailing slash so that others know it's a directory
 
 DEBUG = True

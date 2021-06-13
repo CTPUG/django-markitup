@@ -13,12 +13,12 @@ along with the markup to parse.
 
 For instance, if MARKITUP_PREVIEW_FILTER is set to::
 
-    ('markdown.markdown', {'safe_mode': True})
+    ('markdown.markdown', {'output_format': 'html5'})
 
 then calling ``filter_func(text)`` is equivalent to::
 
     from markdown import markdown
-    markdown(text, safe_mode=True)
+    markdown(text, output_format='html5')
 
 Though the implementation differs, the format of the
 MARKITUP_PREVIEW_FILTER setting is inspired by James Bennett's
