@@ -31,6 +31,15 @@ def replace_javascript():
     return False
 
 
+def replace_text_css():
+    """Check if we need to strp out 'test/css' bits"""
+    # See previous comments, but this is for Django 4.0 to 4.1
+    djversion = get_version_tuple(get_version())
+    if djversion[0] > 4 or (djversion[0] == 4 and djversion[1] > 0):
+        return True
+    return False
+
+
 class MarkupFieldTests(TestCase):
     def setUp(self):
         self.post = Post.objects.create(title='example post',
@@ -365,6 +374,8 @@ class TemplatetagMediaUrlTests(MIUTestCase):
 <link href="%(prefix)s/markitup/sets/default/style.css" type="text/css" media="screen" rel="stylesheet" />
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 """ % {'prefix': self.prefix} + self.script_tags
+        if replace_text_css():
+            out = out.replace('type="text/css"', '')
         return out
 
     # JQUERY_URL settings and resulting link
