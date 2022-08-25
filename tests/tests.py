@@ -31,6 +31,15 @@ def replace_javascript():
     return False
 
 
+def replace_text_css():
+    """Check if we need to strp out 'test/css' bits"""
+    # See previous comments, but this is for Django 4.0 to 4.1
+    djversion = get_version_tuple(get_version())
+    if djversion[0] > 4 or (djversion[0] == 4 and djversion[1] > 0):
+        return True
+    return False
+
+
 class MarkupFieldTests(TestCase):
     def setUp(self):
         self.post = Post.objects.create(title='example post',
@@ -467,6 +476,8 @@ class WidgetMediaUrlTests(TemplatetagMediaUrlTests):
         result = super()._get_expected_media()
         if replace_javascript():
             result = result.replace('type="text/javascript" ', '')
+        if replace_text_css():
+            result = result.replace('type="text/css" ', '')
         return result
 
     def test_set_via_argument(self):
