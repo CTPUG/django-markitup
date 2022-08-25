@@ -374,8 +374,6 @@ class TemplatetagMediaUrlTests(MIUTestCase):
 <link href="%(prefix)s/markitup/sets/default/style.css" type="text/css" media="screen" rel="stylesheet" />
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 """ % {'prefix': self.prefix} + self.script_tags
-        if replace_text_css():
-            out = out.replace('type="text/css"', '')
         return out
 
     # JQUERY_URL settings and resulting link
@@ -478,6 +476,8 @@ class WidgetMediaUrlTests(TemplatetagMediaUrlTests):
         result = super()._get_expected_media()
         if replace_javascript():
             result = result.replace('type="text/javascript" ', '')
+        if replace_text_css():
+            result = result.replace('type="text/css" ', '')
         return result
 
     def test_set_via_argument(self):
