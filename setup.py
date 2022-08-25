@@ -17,7 +17,7 @@ def _static_files(prefix):
 
 setup(
     name='django-markitup',
-    version='4.0.0',
+    version='4.1.0',
     description='Markup handling for Django using the MarkItUp! universal markup editor',
     long_description_content_type="text/x-rst",
     long_description=long_description,
