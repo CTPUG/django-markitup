@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 import json
 import re
+from unittest import skipIf
 
 from django.core import serializers
 from django.forms.models import modelform_factory
@@ -10,6 +11,7 @@ from django.test import TestCase, Client
 from django.utils.safestring import mark_safe
 from django.test.utils import override_settings
 from django.utils.version import get_version, get_version_tuple
+from django import VERSION
 
 from django.contrib import admin
 
@@ -114,11 +116,11 @@ class MarkupFieldTests(TestCase):
 
     def testRenderWith(self):
         self.post.body.render_with(str('tests.filter.testfilter_upper'), skip=['a', 's'])
-        self.assertEquals(str(self.post.body), "REPLaCE THIs TEXT")
+        self.assertEqual(str(self.post.body), "REPLaCE THIs TEXT")
 
     def testRenderWithNoArgs(self):
         self.post.body.render_with(str('tests.filter.testfilter_upper'))
-        self.assertEquals(str(self.post.body), "REPLACE THIS TEXT")
+        self.assertEqual(str(self.post.body), "REPLACE THIS TEXT")
 
 
 class MarkupFieldSerializationTests(TestCase):
@@ -183,7 +185,7 @@ class MarkupFieldFormSaveTests(TestCase):
         form.save()
 
         actual = Post.objects.get(title=self.data['title'])
-        self.assertEquals(actual.body.raw, self.data['body'])
+        self.assertEqual(actual.body.raw, self.data['body'])
 
     def testFormUpdate(self):
         existing = Post.objects.create(title=self.data['title'], body=self.data['body'])
@@ -193,7 +195,7 @@ class MarkupFieldFormSaveTests(TestCase):
         form.save()
 
         actual = Post.objects.get(title=update['title'])
-        self.assertEquals(actual.body.raw, update['body'])
+        self.assertEqual(actual.body.raw, update['body'])
 
 
 class HiddenFieldFormTests(TestCase):
@@ -237,7 +239,7 @@ class PreviewTests(TestCase):
 
 class MIUTestCase(TestCase):
     def assertIn(self, needle, haystack, reverse=False):
-        func = reverse and self.failIf or self.failUnless
+        func = reverse and self.assertFalse or self.assertTrue
         descrip = reverse and 'in' or 'not in'
         func(needle in haystack,
              "'%s' %s '%s'" % (needle, descrip, haystack))
@@ -440,13 +442,27 @@ class TemplatetagMediaUrlTests(MIUTestCase):
         finally:
             settings.MARKITUP_SKIN = _old_miu_skin
 
+    # This duplicate test setup is a bit clunky, because STATICFILES_STORAGE is removed
+    # in Django 5.1, but STORAGES is only added in 4.2 and we want to test older versions
+    # and we can't have both definitions in the same settings specification
+    @skipIf(VERSION[0] > 4, "Django 5+ no longer supports STATICFILES_STORAGE")
     @override_settings(STATICFILES_STORAGE='tests.test_storage.SomeCustomStorage')
-    def test_honor_staticfiles_storage(self):
+    def test_honor_staticfiles_storage_pre_django_5(self):
         """Should not circumvent the user's STATICFILES_STORAGE setting"""
         self._reset_storage()
         self.prefix = 'https://cdn.example.com/static'
         out = self._get_expected_media()
         self.assertHTMLEqual(self._get_media(), out)
+
+    @skipIf(VERSION[0] < 5, "Older django versions don't support STORAGES")
+    @override_settings(STORAGES = { 'staticfiles': { 'BACKEND': 'tests.test_storage.SomeCustomStorage' } })
+    def test_honor_staticfiles_storage_post_django_5(self):
+        """Should not circumvent the user's STATICFILES_STORAGE setting"""
+        self._reset_storage()
+        self.prefix = 'https://cdn.example.com/static'
+        out = self._get_expected_media()
+        self.assertHTMLEqual(self._get_media(), out)
+
 
 
 class WidgetMediaUrlTests(TemplatetagMediaUrlTests):
